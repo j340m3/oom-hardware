@@ -1,32 +1,52 @@
 {
   config,
   lib,
-  fn,
   nixos-hardware,
+  pkgs,
   ...
 }: let
-  inherit (lib) mkIf mkEnableOption mkOption types;
+  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) mkDefault;
   cfg = config.hardware.cm4;
+  rpi-utils = pkgs.callPackage ../raspberry-pi/packages/rpi-utils {};
 in {
   options.hardware.cm4 = {
     enable = mkEnableOption "custom CM4";
   };
 
-  imports = [nixos-hardware.nixosModules.raspberry-pi-4] ++ (fn.scanPaths ./.);
+  imports =
+    [nixos-hardware.nixosModules.raspberry-pi-4]
+    ++ [../raspberry-pi/overlays]
+    ++ [../raspberry-pi/apply-overlays];
 
   config = mkIf cfg.enable {
+    environment.systemPackages = [rpi-utils];
+
     hardware.raspberry-pi."4" = {
       apply-overlays-dtmerge.enable = true;
-      xhci.enable = true;
+      xhci.enable = mkDefault true;
       overlays = {
-        audremap.enable = true;
-        spi-gpio40-45.enable = true;
+        cpu-revision.enable = mkDefault true;
+        audremap.enable = mkDefault true;
+        spi-gpio40-45.enable = mkDefault true;
       };
     };
 
     hardware.deviceTree = {
       enable = true;
-      filter = "*-rpi-cm4.dtb";
+      filter = "bcm2711-rpi-cm4.dtb";
+      overlaysParams = [
+        {
+          name = "bcm2711-rpi-cm4";
+          params = {
+            spi = mkDefault "on";
+          };
+        }
+        {
+          name = "audremap";
+          params = {pins_12_13 = mkDefault "on";};
+        }
+      ];
     };
 
     users.groups.spi = {};

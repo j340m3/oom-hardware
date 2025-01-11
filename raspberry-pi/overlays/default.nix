@@ -12,5 +12,7 @@
     ./dtb-vc4-fkms-v3d.nix
     ./dtb-cpi-spi4.nix
     ./dtb-rpi4-disable-pwrled.nix
+    ./dtb-spi-gpio40-45.nix
+    ./dtb-i2c-rtc.nix
   ];
 }
