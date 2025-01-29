@@ -10,7 +10,7 @@
   in
     linuxPackagesFor (linux_rpi4.override {
       argsOverride = {
-        version = "${modDirVersion}-${tag}-cpi";
+        version = "${modDirVersion}-${tag}-uc-cm4";
         inherit modDirVersion;
 
         src = fetchFromGitHub {
@@ -19,6 +19,7 @@
           rev = tag;
           hash = "sha256-phCxkuO+jUGZkfzSrBq6yErQeO2Td+inIGHxctXbD5U=";
         };
+        ignoreConfigErrors = true;
       };
     });
   patches = [
@@ -67,7 +68,7 @@ in {
           REGULATOR_AXP20X = pkgs.lib.kernel.yes;
           AXP20X_ADC = pkgs.lib.kernel.module;
           TI_ADC081C = pkgs.lib.kernel.module;
-          CRYPTO_LIB_ARC4 = pkgs.lib.kernel.yes;
+          CRYPTO_LIB_ARC4 = pkgs.lib.kernel.yes; # FIXME
           CRC_CCITT = pkgs.lib.kernel.yes;
         };
       }
