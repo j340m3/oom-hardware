@@ -15,6 +15,7 @@
     nixosModules = {
       uconsole = import ./uconsole {inherit pkgs nixos-hardware;};
       deskpi = import ./deskpi {inherit pkgs nixos-hardware;};
+      cm4 = import ./cm4 {inherit pkgs nixos-hardware;};
     };
   };
 }
