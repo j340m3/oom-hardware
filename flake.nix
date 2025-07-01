@@ -14,10 +14,13 @@
     ...
   } @ inputs: 
   let
-    inherit (self) outputs inputs;
+    inherit (self) outputs ;
   in {
     nixosModules = {
-      uconsole = import ./uconsole;
+      uconsole = {
+        specialArgs = {inherit inputs outputs;};
+        imports = [./uconsole];
+      };
       deskpi = import ./deskpi;
       cm4 = import ./cm4;
     };
