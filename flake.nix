@@ -8,9 +8,11 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     nixos-hardware
-  }: let
+  } @ inputs : 
+  let
     system = "aarch64-linux";
     pkgs = import nixpkgs {inherit system;};
   in {
