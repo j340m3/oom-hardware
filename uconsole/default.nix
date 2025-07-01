@@ -6,9 +6,9 @@
 }: let
   inherit (lib) mkDefault;
   rpi-utils = pkgs.callPackage ../raspberry-pi/packages/rpi-utils {};
-in {
+in rec {
   imports =
-    [import nixos-hardware.nixosModules.raspberry-pi-4]
+    [nixos-hardware.nixosModules.raspberry-pi-4]
     ++ 
     [./kernel]
     ++ [../raspberry-pi/overlays]
