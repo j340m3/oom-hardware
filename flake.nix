@@ -12,16 +12,12 @@
     nixpkgs,
     nixos-hardware,
     ...
-  } @ inputs: 
-  let
-    inherit (self) outputs ;
-    pkgs = import nixpkgs;
-    lib = nixpkgs.lib;
-  in {
+  }: 
+  {
     nixosModules = {
-      uconsole = (import ./uconsole) {inherit nixos-hardware pkgs lib;};
-      deskpi = (import ./deskpi) ;
-      cm4 = (import ./cm4);
+      uconsole = ./uconsole;
+      deskpi = ./deskpi;
+      cm4 = ./cm4;
     };
   };
 }
