@@ -8,7 +8,7 @@
   rpi-utils = pkgs.callPackage ../raspberry-pi/packages/rpi-utils {};
 in {
   imports =
-    [nixos-hardware.nixosModules.raspberry-pi-4]
+    [import nixos-hardware.nixosModules.raspberry-pi-4]
     ++ 
     [./kernel]
     ++ [../raspberry-pi/overlays]
