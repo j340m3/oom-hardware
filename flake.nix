@@ -10,14 +10,15 @@
   outputs = {
     self,
     nixpkgs,
-    nixos-hardware
+    nixos-hardware,
+    ...
   } @ inputs: 
   let
-    inherit (self) outputs;
+    inherit (self) outputs inputs;
   in {
     nixosModules = {
       uconsole = import ./uconsole;
-      deskpi = import ./deskpi ;
+      deskpi = import ./deskpi;
       cm4 = import ./cm4;
     };
   };
