@@ -18,13 +18,13 @@
   in {
     nixosModules = {
       uconsole = {
-        specialArgs = {inherit inputs outputs;};
+        #specialArgs = {inherit inputs outputs;};
         imports = 
           [nixos-hardware.nixosModules.raspberry-pi-4]
           ++ [./uconsole];
       };
-      deskpi = import ./deskpi;
-      cm4 = import ./cm4;
+      deskpi = (import ./deskpi);
+      cm4 = (import ./cm4);
     };
   };
 }
