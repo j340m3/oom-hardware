@@ -8,9 +8,9 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
-    nixos-hardware
+    nixos-hardware,
+    ...
   } @ inputs : 
   let
     #inherit outputs;
