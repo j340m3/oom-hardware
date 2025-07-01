@@ -16,9 +16,9 @@
     #inherit outputs;
   in {
     nixosModules = {
-      uconsole.imports = [ ./uconsole ];
-      deskpi.imports = [ ./deskpi ];
-      cm4.imports = [./cm4];
+      uconsole = import ./uconsole;
+      deskpi = import ./deskpi ;
+      cm4 = import ./cm4;
     };
   };
 }
