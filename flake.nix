@@ -13,7 +13,7 @@
     nixos-hardware
   } @ inputs : 
   let
-    inherit (self) outputs;
+    #inherit outputs;
   in {
     nixosModules = {
       uconsole.imports = [ ./uconsole ];
