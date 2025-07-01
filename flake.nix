@@ -15,15 +15,12 @@
   } @ inputs: 
   let
     inherit (self) outputs ;
+    pkgs = import nixpkgs;
+    lib = pkgs.lib;
   in {
     nixosModules = {
-      uconsole = {
-        #specialArgs = {inherit inputs outputs;};
-        imports = 
-          [nixos-hardware.nixosModules.raspberry-pi-4]
-          ++ [./uconsole];
-      };
-      deskpi = (import ./deskpi);
+      uconsole = (import ./uconsole) {inherit nixos-hardware pkgs lib;};
+      deskpi = (import ./deskpi) ;
       cm4 = (import ./cm4);
     };
   };
