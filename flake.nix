@@ -13,14 +13,12 @@
     nixos-hardware
   } @ inputs : 
   let
-    system = "aarch64-linux";
-    pkgs = import nixpkgs {inherit system;};
+    inherit (self) outputs;
   in {
-
     nixosModules = {
-      uconsole = import ./uconsole {inherit pkgs nixos-hardware;};
-      deskpi = import ./deskpi {inherit pkgs nixos-hardware;};
-      cm4 = import ./cm4;
+      uconsole.imports = [ ./uconsole ];
+      deskpi.imports = [ ./deskpi ];
+      cm4.imports = [./cm4];
     };
   };
 }
