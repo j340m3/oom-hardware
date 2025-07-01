@@ -1,7 +1,7 @@
 {
   pkgs,
   lib,
-  nixos-hardware,
+  #nixos-hardware,
   ...
 }: let
   inherit (lib) mkDefault;
