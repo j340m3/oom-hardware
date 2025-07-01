@@ -16,7 +16,7 @@
   let
     inherit (self) outputs ;
     pkgs = import nixpkgs;
-    lib = pkgs.lib;
+    lib = nixpkgs.lib;
   in {
     nixosModules = {
       uconsole = (import ./uconsole) {inherit nixos-hardware pkgs lib;};
