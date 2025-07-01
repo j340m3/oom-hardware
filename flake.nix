@@ -13,6 +13,9 @@
     nixos-hardware,
     ...
   }: 
+  let 
+    inherit self;
+  in
   {
     nixosModules = {
       uconsole = ./uconsole;
