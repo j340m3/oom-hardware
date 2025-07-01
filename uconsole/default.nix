@@ -1,8 +1,7 @@
 {
   pkgs,
   nixos-hardware,
-  lib,
-  ...
+  lib
 }: let
   inherit (lib) mkDefault;
   rpi-utils = pkgs.callPackage ../raspberry-pi/packages/rpi-utils {};

@@ -8,12 +8,12 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
-    nixos-hardware,
-    ...
-  } @ inputs : 
+    nixos-hardware
+  } : 
   let
-    #inherit outputs;
+    inherit (self) outputs;
   in {
     nixosModules = {
       uconsole = import ./uconsole;
