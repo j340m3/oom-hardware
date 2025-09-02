@@ -52,7 +52,7 @@ in {
       {
         name = "uconsole-config";
         patch = null;
-        extraStructuredConfig = {
+        structuredExtraConfig = {
           BACKLIGHT_CLASS_DEVICE = pkgs.lib.kernel.yes;
           DRM_PANEL_CLOCKWORK_CWU50 = pkgs.lib.kernel.module;
           SIMPLE_AMPLIFIER_SWITCH = pkgs.lib.kernel.module;
