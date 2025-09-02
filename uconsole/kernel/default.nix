@@ -9,7 +9,7 @@
     tag = "stable_20241008";
   in
     linuxPackagesFor (linux_rpi4.override {
-      /* argsOverride = {
+      argsOverride = {
         version = "${modDirVersion}-${tag}-uc-cm4";
         inherit modDirVersion;
 
@@ -20,7 +20,7 @@
           hash = "sha256-phCxkuO+jUGZkfzSrBq6yErQeO2Td+inIGHxctXbD5U=";
         };
         ignoreConfigErrors = true;
-      }; */
+      };
     });
   patches = [
     ./patches/001-OCP8178-backlight-driver.patch
